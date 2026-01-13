@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMT Customs - Premium Car Customisation | Edinburgh</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-cyan: #00ffff;
+            --neon-pink: #ff006e;
+            --neon-yellow: #ffbe0b;
+            --dark-bg: #0a0e27;
+            --darker-bg: #050814;
+            --card-bg: #141b3d;
+            --text-primary: #ffffff;
+            --text-secondary: #a8b2d1;
+            --accent-gradient: linear-gradient(135deg, #00ffff 0%, #ff006e 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--darker-bg);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated background grid */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(50px); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 30px 0;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+            background: rgba(5, 8, 20, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+            text-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .gradient-text {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 50px;
+            background: var(--accent-gradient);
+            color: var(--darker-bg);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.3);
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(0, 255, 255, 0.5);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 60px;
+            font-weight: 700;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        /* Center the combo card */
+        .service-card:nth-child(3) {
+            grid-column: 1 / -1;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-gradient);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 20px 60px rgba(0, 255, 255, 0.2);
+        }
+
+        .service-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .service-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .service-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--neon-cyan);
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .price-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .price-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95rem;
+        }
+
+        .price {
+            color: var(--neon-yellow);
+            font-weight: 600;
+        }
+
+        .select-service {
+            width: 100%;
+            padding: 12px 24px;
+            background: transparent;
+            border: 2px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .select-service:hover {
+            background: var(--neon-cyan);
+            color: var(--darker-bg);
+            box-shadow: 0 5px 20px rgba(0, 255, 255, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-container {
+                padding: 30px 20px;
+            }
+
+            .calendar-grid {
+                grid-template-columns: repeat(7, 1fr);
+                gap: 5px;
+            }
+
+            .calendar-day {
+                padding: 10px 5px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">BMT CUSTOMS</div>
+                <div class="contact-info">
+                    <div class="contact-item">📍 Edinburgh</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>
+                    Transform Your Ride with<br>
+                    <span class="gradient-text">Premium Customisation</span>
+                </h1>
+                <p>Star lights, ambient lighting, wraps & tints. Professional installation with warranties. Based in Edinburgh.</p>
+                <a href="https://api.leadconnectorhq.com/widget/bookings/bmtcustoms42311234" target="_blank" class="cta-button">BOOK YOUR SLOT</a>
+            </div>
+        </section>
+
+        <section class="services">
+            <div class="container">
+                <h2 class="section-title">Our <span class="gradient-text">Services</span></h2>
+                
+                <div class="services-grid">
+                    <!-- Star Lights -->
+                    <div class="service-card">
+                        <div class="service-content">
+                            <div class="service-icon">✨</div>
+                            <h3>Star Lights</h3>
+                            <p>Transform your car's ceiling into a stunning starlight display. Fully app-controlled via your phone with customizable colors and dynamic patterns to match your mood.</p>
+                            <p style="margin-top: 10px; font-size: 0.95rem;">Installation takes approximately 2 days depending on your vehicle. All installations include a comprehensive 1-year warranty for complete peace of mind.</p>
+                            <p style="margin-top: 10px; font-size: 0.95rem; color: var(--neon-cyan);">✓ Choose any color you like<br>✓ Multiple pattern options<br>✓ Easy phone app control<br>✓ Professional installation</p>
+                            <ul class="price-list">
+                                <li><span>500 Stars</span> <span class="price">£500</span></li>
+                                <li><span>600 Stars</span> <span class="price">£600</span></li>
+                                <li><span>700 Stars</span> <span class="price">£700</span></li>
+                                <li><span>800 Stars</span> <span class="price">£800</span></li>
+                                <li><span>1000 Stars</span> <span class="price">£1000</span></li>
+                            </ul>
+                            <button class="select-service" data-service="Star Lights">SELECT THIS SERVICE</button>
+                        </div>
+                    </div>
+
+                    <!-- Ambient Lighting -->
+                    <div class="service-card">
+                        <div class="service-content">
+                            <div class="service-icon">💡</div>
+                            <h3>Ambient Lighting</h3>
+                            <p>Complete interior lighting transformation with app-controlled RGB lighting throughout your vehicle. Choose from multiple colors and patterns to create the perfect ambiance.</p>
+                            <p style="margin-top: 10px; font-size: 0.95rem;">All systems are professionally hardwired to your ignition (no battery drain). Installation takes around 6 hours and includes a premium factory-style finish. We've completed hundreds of installations!</p>
+                            <p style="margin-top: 10px; font-size: 0.95rem; color: var(--neon-cyan);">✓ 2-year warranty included<br>✓ No battery drain<br>✓ Full app control<br>✓ Professional hardwired install</p>
+                            <ul class="price-list">
+                                <li><span>Basic Package</span> <span class="price">£360</span></li>
+                                <li style="font-size: 0.85rem; opacity: 0.8;"><span>2 dash strips, 4 footwells, door strips, handles & pockets</span></li>
+                                <li><span>Premium Package</span> <span class="price">£450</span></li>
+                                <li style="font-size: 0.85rem; opacity: 0.8;"><span>Basic + centre console strips & storage/cup holders</span></li>
+                                <li><span>Premium Plus</span> <span class="price">£550</span></li>
+                                <li style="font-size: 0.85rem; opacity: 0.8;"><span>Premium + panoramic roof strips (if applicable)</span></li>
+                                <li><span>Mercedes Premium Plus</span> <span class="price">£750</span></li>
+                                <li style="font-size: 0.85rem; opacity: 0.8;"><span>Premium Plus + LED air vents for Mercedes models</span></li>
+                            </ul>
+                            <button class="select-service" data-service="Ambient Lighting">SELECT THIS SERVICE</button>
+                        </div>
+                    </div>
+
+                    <!-- Combined Package -->
+                    <div class="service-card">
+                        <div class="service-content">
+                            <div class="service-icon">🌟</div>
+                            <h3>Stars + Ambient Combo</h3>
+                            <p>Our most popular package! Get the complete transformation with full premium ambient lighting throughout your interior PLUS our 500 star light ceiling kit.</p>
+                            <p style="margin-top: 10px; font-size: 0.95rem;">This package includes 6 lighting strips (2 dashboard, 4 doors), 4 footwells, door handle lighting, door pocket lighting, and 500 stunning stars in your ceiling - all app-controlled from your phone.</p>
+                            <p style="margin-top: 10px; font-size: 0.95rem; color: var(--neon-cyan);">✓ Save £100 with this bundle<br>✓ Complete interior transformation<br>✓ Full app control everything<br>✓ 2-year warranty on ambient, 1-year on stars</p>
+                            <ul class="price-list">
+                                <li><span>Complete Package</span> <span class="price">£750</span></li>
+                                <li><span>Includes</span> <span>Full Premium Ambient</span></li>
+                                <li><span>Plus</span> <span>500 Star Light Kit</span></li>
+                                <li><span>Regular Price</span> <span style="text-decoration: line-through;">£850</span></li>
+                                <li><span>You Save</span> <span class="price">£100!</span></li>
+                            </ul>
+                            <button class="select-service" data-service="Stars + Ambient">SELECT THIS SERVICE</button>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <script>
+        // Service selection - opens booking calendar in new tab
+        document.querySelectorAll('.select-service').forEach(button => {
+            button.addEventListener('click', function() {
+                window.open('https://api.leadconnectorhq.com/widget/bookings/bmtcustoms42311234', '_blank');
+            });
+        });
+    </script>
+</body>
+</html>
